@@ -49,7 +49,7 @@ module mod_four2d
   end interface
   
   interface crosscorr_complex
-     module procedure crosscorr_tot_real, crosscorr_k_real
+     module procedure crosscorr_tot_complex, crosscorr_k_complex
   end interface
 
   interface crosscorr_ky
@@ -562,13 +562,13 @@ contains
     complex(dpc), dimension(0:hnx,0:nym1), intent(in) :: f1,f2
     integer, intent(in) :: korder
     complex(dpc), dimension(0:hnx,0:nym1) :: ek
-    complex(dpc), optional :: ek0(2) 
-    ! (Zonal, Streamer)
+    complex(dpc), optional :: ek0(2) !! (Zonal, Streamer)
     complex(dpc) :: total
     
     integer :: i,j
 
     ! take (f1 f2^*)
+
     forall (i=0:hnx, j=0:nym1)
        ek(i,j) = f1(i,j)*conjg(f2(i,j))    
     end forall
